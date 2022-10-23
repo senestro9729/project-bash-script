@@ -29,10 +29,10 @@ else
         https://download.docker.com/linux/centos/docker-ce.repo
         if [ $? -ne 0 ]
         then
-            echo “someting when wrong during the repository set up, please check the commands!”
+            echo “someting when wrong while setting up the repository, please check the commands!”
             exit 4
         else
-            yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+            yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
             if [ $? -ne 0 ]
             then
                 echo “someting when wrong during the installation, , please check the command”
@@ -45,7 +45,7 @@ else
                     echo “Docker has been succesfully installed but having some problem to start!”
                     exit 6
                 else
-                    echo “Docker has been succesfully installed and running (-_-)!”
+                    echo “Docker has been succesfully installed and running !”
                 fi
             fi
         fi
