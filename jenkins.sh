@@ -15,31 +15,26 @@ else
     if [ $? -ne 0 ]
     then
         echo “someting went wrong when adding jenkins repository!”
-        exit 3
+        exit 2
     else
         yum install jenkins -y
         if [ $? -ne 0 ]
         then
             echo “someting went wrong during the Jenkins installation!”
-            exit 4
+            exit 2
         else
             systemctl start jenkins
             sudo systemctl enable jenkins
             if [ $? -ne 0 ]
             then
                 echo “someting went wrong when starting Jenkins”
-                exit 5
+                exit 2
             else
                 firewall-cmd --permanent --zone=public --add-port=8080/tcp
-                firewall-cmd --reload
-                if [ $? -ne 0 ]
-                then
-                    echo “Jenkins has been succesfully installed but having some problem to ajust the firewall!”
-                    exit 6
-                else
-                    systemctl status jenkins
-                    echo “Jenkins has been succesfully installed and running !”
-                fi
+                firewall-cmd --reload               
+                systemctl status jenkins
+                echo “Jenkins has been succesfully installed and running !”
+                
             fi
         fi
     fi

@@ -21,7 +21,7 @@ else
     if [ $? -ne 0 ]
     then
         echo “someting went wrong during the previous version remove!”
-        exit 3
+        exit 2
     else
         yum install -y yum-utils
         yum-config-manager \
@@ -30,20 +30,20 @@ else
         if [ $? -ne 0 ]
         then
             echo “someting went wrong while setting up the repository, please check the commands!”
-            exit 4
+            exit 2
         else
             yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
             if [ $? -ne 0 ]
             then
                 echo “someting went wrong during the installation, , please check the command”
-                exit 5
+                exit 2
             else
                 systemctl start docker
                 docker run hello-world
                 if [ $? -ne 0 ]
                 then
                     echo “Docker has been succesfully installed but having some problem to start!”
-                    exit 6
+                    exit 2
                 else
                     echo “Docker has been succesfully installed and running !”
                 fi
