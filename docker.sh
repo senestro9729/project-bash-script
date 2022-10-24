@@ -7,7 +7,7 @@ yum update -y
 
 if [ $? -ne 0 ]
 then
-    echo “someting when wrong during the upgrade!”
+    echo “someting went wrong during the upgrade!”
     exit 2
 else
     yum remove docker \
@@ -20,7 +20,7 @@ else
                   docker-engine
     if [ $? -ne 0 ]
     then
-        echo “someting when wrong during the previous version remove!”
+        echo “someting went wrong during the previous version remove!”
         exit 3
     else
         yum install -y yum-utils
@@ -29,13 +29,13 @@ else
         https://download.docker.com/linux/centos/docker-ce.repo
         if [ $? -ne 0 ]
         then
-            echo “someting when wrong while setting up the repository, please check the commands!”
+            echo “someting went wrong while setting up the repository, please check the commands!”
             exit 4
         else
             yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
             if [ $? -ne 0 ]
             then
-                echo “someting when wrong during the installation, , please check the command”
+                echo “someting went wrong during the installation, , please check the command”
                 exit 5
             else
                 systemctl start docker
