@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Author: Emmanuel
+## Author: ibrahim
 ##Date: oct 2022
 
 yum install java-11-openjdk-devel -y
